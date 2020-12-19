@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script context="module">
 	import LoginC from './components/Login.svelte'
 </script>
 <script lang="ts">
@@ -8,3 +8,12 @@
 <section>
 	<LoginC />
 </section>
+
+<style global>
+  /* purgecss start ignore */
+  @tailwind base;
+  @tailwind components;
+  /* purgecss end ignore */
+ 
+  @tailwind utilities;
+</style>

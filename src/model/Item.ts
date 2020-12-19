@@ -5,7 +5,7 @@ export class Item {
     packed: boolean;
 
     /**
-     * 
+     * Creates a new item with the given Id and Name.
      * @param id The unique id of the Item.
      * @param name The name of the Item.
      * @param packed An (optional) value indicating whether the item has been packed.

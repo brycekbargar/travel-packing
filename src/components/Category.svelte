@@ -9,11 +9,10 @@
     export let isUniqueCategory: UniqueGuarantor<Category>;
     export let isUniqueItem: UniqueGuarantor<Item>;
     export let category: Category;
+    let categoryName = category.name;
 
     let editing = false;
     let itemName: string;
-
-    $: categoryName = category.name;
 
     /**
      * Tries to add the current itemName to the category, checking for uniqueness first.
@@ -57,9 +56,9 @@
     </h3>
 
     <form on:submit|preventDefault="{tryAddItem}">
-        <label for="itemName">New Item</label>
+        <label for="itemName-{category.id}">New Item</label>
         <input type="text"
-            id="itemName" name="itemName"
+            id="itemName-{category.id}" name="itemName"
             bind:value="{itemName}" />
         <button disabled="{!itemName}">Add Item</button>
     </form>

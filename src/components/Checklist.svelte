@@ -8,7 +8,7 @@
 <script>
     let categories = Array<Category>();
     let categoryName: string;
-    let itemVisibility: ItemVisibility;
+    let itemVisibility = ItemVisibility.All;
 
     const isUniqueCategory = Category.IsCategoryUnique(categories);
     const isUniqueItem = Category.IsItemUnique(categories);
@@ -17,6 +17,7 @@
 
     $: {
         changeVisibility(itemVisibility);
+        categories = categories;
     }
 
     /**
@@ -48,7 +49,7 @@
 
     <div>
         <label>
-            <input type="radio" checked
+            <input type="radio"
                 name="visibility"
                 value="{ItemVisibility.All}"
                 bind:group="{itemVisibility}"/>

@@ -5,17 +5,17 @@
 <script>
     export let isUnique: UniqueGuarantor<Item>;
     export let item: Item;
+    let itemName = item.name;
 
     let editing = false;
 
-    $: name = item.name;
 
     /**
      * Tries to change the name of the current item, checking for uniqueness first.
      */
     function tryChangeName() {
-        if(isUnique(name, item.id)) {
-            item.name = name;
+        if(isUnique(itemName, item.id)) {
+            item.name = itemName;
             editing = false;
             return;
         }
@@ -29,7 +29,7 @@
     {#if editing}
         <input type="text" 
             on:blur="{tryChangeName}"
-            bind:value="{name}" />
+            bind:value="{itemName}" />
     {:else}
         <span 
             on:click="{() => editing = true}">

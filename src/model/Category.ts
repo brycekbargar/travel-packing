@@ -1,6 +1,7 @@
 const compareFunc = require('compare-func');
 import { Guid } from 'guid-typescript'
-import { Item, UniqueItemGuarantor } from './Item'
+import { Item } from './Item'
+import type { UniqueGuarantor } from './PossiblyUnique'
 
 /** Category represents a named grouping of items. */
 export class Category{
@@ -49,12 +50,21 @@ export class Category{
     }
 
     /**
-     * Generates a UniqueItemGuarantor by looking at all items in a set of Categories.
+     * Generates a Guarantor by looking at all items in a set of Categories.
      * @param categories A collection of categories to check for unique item names.
      */
-    static IsItemUnique(categories: Category[]): UniqueItemGuarantor {
+    static IsItemUnique(categories: Category[]): UniqueGuarantor<Item> {
         return (n: string, id?: string) => !categories
             .flatMap(c => c.items)
-            .some(i => i.name === n && i.id !== id)
+            .some(i => i.name === n && i.id !== id);
+    }
+
+    /**
+     * Generates a Guarantor by looking at all the categories in a set of Categories.
+     * @param categories A collection of categories to check for unique category names.
+     */
+    static IsCategoryUnique(categories: Category[]): UniqueGuarantor<Category> {
+        return (n: string, id?: string) => !categories
+            .some(c => c.name === n && c.id !== id);
     }
 }

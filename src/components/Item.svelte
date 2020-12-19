@@ -1,10 +1,26 @@
 <script context="module">
     import type { Item } from '../model/Item'
+    import type { UniqueGuarantor } from '../model/PossiblyUnique'
 </script>
 <script>
+    export let isUnique: UniqueGuarantor<Item>;
     export let item: Item;
 
     let editing = false;
+
+    $: name = item.name;
+
+    /**
+     * Tries to change the name of the current item, checking for uniqueness first.
+     */
+    function tryChangeName() {
+        if(isUnique(name, item.id)) {
+            item.name = name;
+            editing = false;
+            return;
+        }
+        alert(`An item named '${name}' already exists.`);
+    }
 </script>
 
 <li>
@@ -12,8 +28,8 @@
         bind:checked="{item.packed}" />
     {#if editing}
         <input type="text" 
-            on:blur="{() => editing = false}"
-            bind:value="{item.name}" />
+            on:blur="{tryChangeName}"
+            bind:value="{name}" />
     {:else}
         <span 
             on:click="{() => editing = true}">

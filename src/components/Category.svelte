@@ -1,26 +1,41 @@
 <script context="module">
     import ItemC from './Item.svelte'
     import type { Category } from '../model/Category'
-    import type { UniqueItemGuarantor } from '../model/Item'
+    import type { Item } from '../model/Item'
+    import type { UniqueGuarantor } from '../model/PossiblyUnique'
 </script>
 <script>
-    export let isUnique: UniqueItemGuarantor;
+    export let isUniqueCategory: UniqueGuarantor<Category>;
+    export let isUniqueItem: UniqueGuarantor<Item>;
     export let category: Category;
 
     let editing = false;
     let itemName: string;
 
+    $: categoryName = category.name;
+
     /**
      * Tries to add the current itemName to the category, checking for uniqueness first.
      */
     function tryAddItem() {
-        if(isUnique(itemName)) {
+        if(isUniqueItem(itemName)) {
             category.addItem(itemName);
             itemName = '';
             return;
         }
 
-        alert(`${itemName} has already been added.`);
+        alert(`An item named '${itemName}' already exists.`);
+    }
+    /**
+     * Tries to change the name of the current category, checking for uniqueness first.
+     */
+    function tryChangeName() {
+        if(isUniqueCategory(categoryName, category.id)) {
+            category.name = categoryName;
+            editing = false;
+            return;
+        }
+        alert(`A category named '${categoryName}' already exists.`);
     }
 </script>
 
@@ -28,8 +43,8 @@
     <h3>
         {#if editing}
             <input type="text" 
-                on:blur="{() => editing = false}"
-                bind:value="{category.name}" />
+                on:blur="{tryChangeName}"
+                bind:value="{categoryName}" />
         {:else}
             <span 
                 on:click="{() => editing = true}">
@@ -51,7 +66,8 @@
     <ul>
         {#each category.displayItems as thisItem (thisItem.id)}
             <ItemC 
-                item="{thisItem}" />
+                item="{thisItem}"
+                isUnique="{isUniqueItem}"/>
         {:else}
             <div>No items in this category : (</div>
         {/each}

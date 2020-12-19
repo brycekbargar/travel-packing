@@ -16,13 +16,3 @@ export class Item {
         this.packed = packed == null ? false : packed;
     }
 }
-
-/** 
- * A function for checking whether the Item's name is unique.
- * @param itemName The name of the Item to check.
- * @param itemId An (optional) id of the Item to allow for an item to keep it's own name.
- * @returns A value indicating whether the name of the Item is unique.
- */
-export interface UniqueItemGuarantor {
-    (itemName: string, itemId?: string): boolean;
-}

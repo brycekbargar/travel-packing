@@ -1,14 +1,10 @@
 <script context="module">
-	import LoginC from './components/Login.svelte'
-</script>
-<script lang="ts">
+	import HomeC from './components/Home.svelte'
 </script>
 
-<h1>Travel Packing Checklist</h1>
-<section>
-	<LoginC />
-</section>
+<HomeC />
 
+<!-- Changes to this file require a long reload as tailwind is re-built -->
 <style global>
   /* purgecss start ignore */
   @tailwind base;

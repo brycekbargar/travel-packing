@@ -1,8 +1,8 @@
 <script context="module">
-	import LoginC from './Login.svelte'
+	import ChecklistC from './Checklist.svelte'
 </script>
 
 <h1>Travel Packing Checklist</h1>
 <main>
-	<LoginC />
+	<ChecklistC />
 </main>

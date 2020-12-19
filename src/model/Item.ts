@@ -16,3 +16,12 @@ export class Item {
         this.packed = packed == null ? false : packed;
     }
 }
+
+/**
+ * ItemVisibility represents a way to control which items should be visible.
+ */
+export enum ItemVisibility {
+    All = 'ALL',
+    Packed = 'PACKED',
+    Unpacked = 'UNPACKED',
+}

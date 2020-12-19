@@ -1,12 +1,14 @@
-const compareFunc = require('compare-func');
+import compareFunc from 'compare-func';
 import { Guid } from 'guid-typescript'
-import { Item } from './Item'
+import { Item, ItemVisibility } from './Item'
 import type { UniqueGuarantor } from './PossiblyUnique'
 
 /** Category represents a named grouping of items. */
 export class Category{
     readonly id: string;
     name: string;
+
+    private visibility: ItemVisibility;
 
     private items: Item[];
     /**
@@ -25,7 +27,15 @@ export class Category{
      * The list of items in this category for display.
      */
     get displayItems(): Item[] {
-        return this.items.sort(compareFunc('name'));
+        return this.items
+            .filter(i => {
+                switch(this.visibility) {
+                    case ItemVisibility.Packed: return i.packed;
+                    case ItemVisibility.Unpacked: return !i.packed;
+                }
+                return true;
+            })
+            .sort(compareFunc('name'));
     }
 
     /**
@@ -34,9 +44,10 @@ export class Category{
      * @param name The name of the Category.
      * @param packed An (optional) list of items the Category contains.
      */
-    constructor(id: string, name: string, items?: Item[]) {
+    constructor(id: string, name: string, visibility: ItemVisibility, items?: Item[]) {
         this.id = id;
         this.name = name;
+        this.visibility = visibility;
         this.items = items == null ? Array<Item>() : items;
     }
 
@@ -66,5 +77,24 @@ export class Category{
     static IsCategoryUnique(categories: Category[]): UniqueGuarantor<Category> {
         return (n: string, id?: string) => !categories
             .some(c => c.name === n && c.id !== id);
+    }
+
+    /**
+     * Unpacks all items in a given collection.
+     * @param categories A collection of categories to unpack.
+     */
+    static UnpackAllItems(categories: Category[]): () => void {
+        return () => categories
+            .flatMap(c => c.items)
+            .forEach(i => i.packed = false);
+    }
+
+    /**
+     * Changes the item visibility of a given collection.
+     * @param categories A collection of categories to change the visibility for.
+     */
+    static ChangeItemVisibility(categories: Category[]): (v: ItemVisibility) => void {
+        return (v) => categories
+            .forEach(c => c.visibility = v);
     }
 }

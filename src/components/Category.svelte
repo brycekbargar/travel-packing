@@ -1,5 +1,6 @@
 <script context="module">
     import ItemC from './Item.svelte'
+
     import type { Category } from '../model/Category'
     import type { Item } from '../model/Item'
     import type { UniqueGuarantor } from '../model/PossiblyUnique'
@@ -52,7 +53,7 @@
             </span>
         {/if}
         <span>{category.remainingItems} of {category.totalItems} remaining</span>
-        <button>&#x1F5D1;</button>
+        <button type="button">&#x1F5D1;</button>
     </h3>
 
     <form on:submit|preventDefault="{tryAddItem}">

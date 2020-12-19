@@ -36,5 +36,5 @@
             {item.name}
         </span>
     {/if}
-    <button>&#x1F5D1;</button>
+    <button type="button">&#x1F5D1;</button>
 </li>

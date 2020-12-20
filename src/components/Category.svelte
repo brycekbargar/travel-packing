@@ -14,12 +14,19 @@
     let editing = false;
     let itemName: string;
 
+    let displayItems: Item[];
+    $: { 
+        category.items; 
+        displayItems = category.displayItems; 
+    }
+
     /**
      * Tries to add the current itemName to the category, checking for uniqueness first.
      */
     function tryAddItem() {
         if(isUniqueItem(itemName)) {
             category.addItem(itemName);
+            category.items = category.items;
             itemName = '';
             return;
         }
@@ -64,7 +71,7 @@
     </form>
 
     <ul>
-        {#each category.displayItems as thisItem (thisItem.id)}
+        {#each displayItems as thisItem (thisItem.id)}
             <ItemC 
                 item="{thisItem}"
                 isUnique="{isUniqueItem}"/>

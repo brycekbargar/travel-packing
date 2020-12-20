@@ -10,7 +10,7 @@ export class Category{
 
     private visibility: ItemVisibility;
 
-    private items: Item[];
+    items: Item[];
     /**
      * The number of items in this category which haven't been packed.
      */
@@ -57,7 +57,6 @@ export class Category{
      */
     addItem(itemName: string) {
         this.items.push(new Item(Guid.raw(), itemName));
-        this.items = this.items;
     }
 
     /**

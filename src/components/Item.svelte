@@ -1,8 +1,12 @@
 <script context="module">
+    import { createEventDispatcher } from 'svelte'
+
     import type { Item } from '../model/Item'
     import type { UniqueGuarantor } from '../model/PossiblyUnique'
 </script>
 <script>
+    const d = createEventDispatcher();
+
     export let isUnique: UniqueGuarantor<Item>;
     export let item: Item;
     let itemName = item.name;
@@ -36,5 +40,5 @@
             {item.name}
         </span>
     {/if}
-    <button type="button">&#x1F5D1;</button>
+    <button type="button" on:click="{() => d('delete', item.id)}">&#x1F5D1;</button>
 </li>

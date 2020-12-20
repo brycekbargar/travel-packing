@@ -1,4 +1,6 @@
 <script context="module">
+    import { createEventDispatcher } from 'svelte'
+
     import ItemC from './Item.svelte'
 
     import type { Category } from '../model/Category'
@@ -6,6 +8,8 @@
     import type { UniqueGuarantor } from '../model/PossiblyUnique'
 </script>
 <script>
+    const d = createEventDispatcher();
+
     export let isUniqueCategory: UniqueGuarantor<Category>;
     export let isUniqueItem: UniqueGuarantor<Item>;
     export let category: Category;
@@ -44,6 +48,10 @@
         }
         alert(`A category named '${categoryName}' already exists.`);
     }
+
+    function deleteItem(e: CustomEvent) {
+        category.items = category.items.filter(i => i.id != e.detail);
+    }
 </script>
 
 <section>
@@ -59,7 +67,7 @@
             </span>
         {/if}
         <span>{category.remainingItems} of {category.totalItems} remaining</span>
-        <button type="button">&#x1F5D1;</button>
+        <button type="button" on:click="{() => d('delete', category.id)}">&#x1F5D1;</button>
     </h3>
 
     <form on:submit|preventDefault="{tryAddItem}">
@@ -74,7 +82,8 @@
         {#each displayItems as thisItem (thisItem.id)}
             <ItemC 
                 item="{thisItem}"
-                isUnique="{isUniqueItem}"/>
+                isUnique="{isUniqueItem}"
+                on:delete="{deleteItem}"/>
         {:else}
             <div>No items in this category : (</div>
         {/each}

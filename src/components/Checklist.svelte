@@ -33,6 +33,10 @@
 
         alert(`An category named '${categoryName}' already exists.`);
     }
+
+    function deleteCategory(e: CustomEvent) {
+        categories = categories.filter(c => c.id != e.detail);
+    }
 </script>
 
 <section>
@@ -80,7 +84,8 @@
             <CategoryC 
                 category="{thisCategory}"
                 isUniqueItem="{isUniqueItem}"
-                isUniqueCategory="{isUniqueCategory}"/>
+                isUniqueCategory="{isUniqueCategory}"
+                on:delete="{deleteCategory}"/>
         {/each}
     </div>
 </section>

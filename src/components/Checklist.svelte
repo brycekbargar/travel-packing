@@ -1,4 +1,6 @@
 <script context="module">
+    import { getContext } from 'svelte'
+
     import CategoryC from './Category.svelte'
 
     import { Guid } from 'guid-typescript'
@@ -6,6 +8,8 @@
     import { ItemVisibility } from '../model/Item'
 </script>
 <script>
+    const username: string = getContext('currentUser');
+
     let categories = Array<Category>();
     let categoryName: string;
     let itemVisibility = ItemVisibility.All;

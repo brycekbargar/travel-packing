@@ -1,12 +1,16 @@
+<script context="module">
+    import { createEventDispatcher } from 'svelte'
+</script>
 <script>
-    let username = '';
-    let password = '';
+    const d = createEventDispatcher();
 
-    function login() { alert('Login'); }
+    export let username: string;
+    let password: string;
+
     function signup() { alert('Signup'); }
 </script>
 
-<form on:submit|preventDefault="{login}">
+<form on:submit|preventDefault="{() => d('login')}">
     <fieldset>
         <label for="username">Username</label>
         <input type="email" required

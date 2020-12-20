@@ -18,28 +18,26 @@
     let editing = false;
     let itemName: string;
 
-    let displayItems: Item[];
-    $: { 
-        category.items; 
-        displayItems = category.displayItems; 
+    let displayItems = Array<Item>();
+    let remaining: number, total: number;
+    $: {
+        displayItems;
+        remaining = category.remainingItems;
+        total = category.totalItems;
     }
 
-    /**
-     * Tries to add the current itemName to the category, checking for uniqueness first.
-     */
+    /** Tries to add the current itemName to the category, checking for uniqueness first. */
     function tryAddItem() {
         if(isUniqueItem(itemName)) {
             category.addItem(itemName);
-            category.items = category.items;
+            displayItems = category.displayItems;
             itemName = '';
             return;
         }
 
         alert(`An item named '${itemName}' already exists.`);
     }
-    /**
-     * Tries to change the name of the current category, checking for uniqueness first.
-     */
+    /** Tries to change the name of the current category, checking for uniqueness first. */
     function tryChangeName() {
         if(isUniqueCategory(categoryName, category.id)) {
             category.name = categoryName;
@@ -49,8 +47,10 @@
         alert(`A category named '${categoryName}' already exists.`);
     }
 
+    /** Deletes an item by a given Item Id. */
     function deleteItem(e: CustomEvent) {
-        category.items = category.items.filter(i => i.id != e.detail);
+        category.removeItemById(e.detail);
+        displayItems = category.displayItems;
     }
 </script>
 
@@ -66,7 +66,7 @@
                 {category.name}
             </span>
         {/if}
-        <span>{category.remainingItems} of {category.totalItems} remaining</span>
+        <span>{remaining} of {total} remaining</span>
         <button type="button" on:click="{() => d('delete', category.id)}">&#x1F5D1;</button>
     </h3>
 

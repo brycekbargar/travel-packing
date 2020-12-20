@@ -24,9 +24,7 @@
         categories = categories;
     }
 
-    /**
-     * Tries to create the current categoryName, checking for uniqueness first.
-     */
+    /** Tries to create the current categoryName, checking for uniqueness first. */
     function tryAddCategory() {
         if(isUniqueCategory(categoryName)) {
             categories.push(new Category(Guid.raw(), categoryName, itemVisibility));
@@ -38,6 +36,7 @@
         alert(`An category named '${categoryName}' already exists.`);
     }
 
+    /** Deletes a category by a given Item Id. */
     function deleteCategory(e: CustomEvent) {
         categories = categories.filter(c => c.id != e.detail);
     }

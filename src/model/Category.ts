@@ -10,7 +10,7 @@ export class Category{
 
     private visibility: ItemVisibility;
 
-    items: Item[];
+    private items: Item[];
     /**
      * The number of items in this category which haven't been packed.
      */
@@ -56,7 +56,14 @@ export class Category{
      * @param itemName The name of the new item to add to the Category.
      */
     addItem(itemName: string) {
-        this.items.push(new Item(Guid.raw(), itemName));
+        this.items = [new Item(Guid.raw(), itemName), ...this.items]
+    }
+    /**
+     * Removes an existing Item from the category with the given id.
+     * @param id The id of the item to remove from the Category.
+     */
+    removeItemById(id: string) {
+        this.items = this.items.filter(i => i.id != id);
     }
 
     /**

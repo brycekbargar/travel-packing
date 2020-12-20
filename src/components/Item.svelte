@@ -24,7 +24,7 @@
             return;
         }
 
-        alert(`An item named '${name}' already exists.`);
+        alert(`An item named '${itemName}' already exists.`);
         itemNameInput.focus();
     }
 </script>

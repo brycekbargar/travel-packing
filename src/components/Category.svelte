@@ -88,7 +88,7 @@
     <ul>
         {#each displayItems as thisItem (thisItem.id)}
             <ItemC 
-                item="{thisItem}"
+                bind:item="{thisItem}"
                 isUnique="{isUniqueItem}"
                 on:delete="{deleteItem}"/>
         {:else}

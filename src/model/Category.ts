@@ -1,14 +1,12 @@
 import compareFunc from 'compare-func';
 import { Guid } from 'guid-typescript'
-import { Item, ItemVisibility } from './Item'
+import { Item } from './Item'
 import type { UniqueGuarantor } from './PossiblyUnique'
 
 /** Category represents a named grouping of items. */
 export class Category{
     readonly id: string;
     name: string;
-
-    private visibility: ItemVisibility;
 
     private items: Item[];
     /**
@@ -28,13 +26,6 @@ export class Category{
      */
     get displayItems(): Item[] {
         return this.items
-            .filter(i => {
-                switch(this.visibility) {
-                    case ItemVisibility.Packed: return i.packed;
-                    case ItemVisibility.Unpacked: return !i.packed;
-                }
-                return true;
-            })
             .sort(compareFunc('name'));
     }
 
@@ -44,10 +35,9 @@ export class Category{
      * @param name The name of the Category.
      * @param packed An (optional) list of items the Category contains.
      */
-    constructor(id: string, name: string, visibility: ItemVisibility, items?: Item[]) {
+    constructor(id: string, name: string, items?: Item[]) {
         this.id = id;
         this.name = name;
-        this.visibility = visibility;
         this.items = items == null ? Array<Item>() : items;
     }
 
@@ -93,14 +83,5 @@ export class Category{
         return () => categories
             .flatMap(c => c.items)
             .forEach(i => i.packed = false);
-    }
-
-    /**
-     * Changes the item visibility of a given collection.
-     * @param categories A collection of categories to change the visibility for.
-     */
-    static ChangeItemVisibility(categories: Category[]): (v: ItemVisibility) => void {
-        return (v) => categories
-            .forEach(c => c.visibility = v);
     }
 }

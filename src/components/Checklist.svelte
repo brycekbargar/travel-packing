@@ -5,19 +5,19 @@
 
     import { Guid } from 'guid-typescript'
     import { Category } from '../model/Category'
-    import { Item, ItemVisibility } from '../model/Item'
+    import { Item } from '../model/Item'
+
+    import { store as ivWriter, ItemVisibility } from '../stores/itemVisibilityStore'
 </script>
 <script>
     const username: string = getContext('currentUser');
-
-    let itemVisibility = ItemVisibility.All;
 
     const savedCategories = localStorage.getItem('travel-packing' + username);
     let categories = Array<Category>();
     if(savedCategories) {
         categories = JSON.parse(savedCategories).map((c: any) => {
             const items = c.items.map((i: any) => new Item(i.id, i.name, i.packed))
-            return new Category(c.id, c.name, itemVisibility, items);
+            return new Category(c.id, c.name, items);
         });
     }
 
@@ -26,12 +26,6 @@
     const isUniqueCategory = Category.IsCategoryUnique(categories);
     const isUniqueItem = Category.IsItemUnique(categories);
     const unpackAll = Category.UnpackAllItems(categories);
-    const changeVisibility = Category.ChangeItemVisibility(categories)
-
-    $: {
-        changeVisibility(itemVisibility);
-        categories = categories;
-    }
 
     $: { 
         categories;
@@ -41,7 +35,7 @@
     /** Tries to create the current categoryName, checking for uniqueness first. */
     function tryAddCategory() {
         if(isUniqueCategory(categoryName)) {
-            categories.push(new Category(Guid.raw(), categoryName, itemVisibility));
+            categories.push(new Category(Guid.raw(), categoryName));
             categories = categories;
             categoryName = '';
             return;
@@ -80,21 +74,21 @@
             <input type="radio"
                 name="visibility"
                 value="{ItemVisibility.All}"
-                bind:group="{itemVisibility}"/>
+                bind:group="{$ivWriter}"/>
             All
         </label>
         <label>
             <input type="radio"
                 name="visibility"
                 value="{ItemVisibility.Packed}"
-                bind:group="{itemVisibility}"/>
+                bind:group="{$ivWriter}"/>
             Packed
         </label>
         <label>
             <input type="radio"
                 name="visibility"
                 value="{ItemVisibility.Unpacked}"
-                bind:group="{itemVisibility}"/>
+                bind:group="{$ivWriter}"/>
             Unpacked
         </label>
         <button type="button"

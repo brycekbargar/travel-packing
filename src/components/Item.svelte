@@ -3,6 +3,8 @@
 
     import type { Item } from '../model/Item'
     import type { UniqueGuarantor } from '../model/PossiblyUnique'
+
+    import { store as ivReader, ItemVisibility } from '../stores/itemVisibilityStore'
 </script>
 <script>
     const d = createEventDispatcher();
@@ -13,6 +15,15 @@
 
     let editing = false;
     let itemNameInput: HTMLElement;
+
+    let hidden: boolean;
+    $: {
+        switch($ivReader) {
+            case ItemVisibility.Packed: hidden = !item.packed; break;
+            case ItemVisibility.Unpacked: hidden = item.packed; break;
+            default: hidden = false; break;
+        }
+    }
 
     /**
      * Tries to change the name of the current item, checking for uniqueness first.
@@ -29,7 +40,7 @@
     }
 </script>
 
-<li>
+<li hidden="{hidden}">
     <input type="checkbox"
         bind:checked="{item.packed}" />
     {#if editing}

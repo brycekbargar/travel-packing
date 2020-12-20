@@ -26,6 +26,8 @@
         total = category.totalItems;
     }
 
+    let categoryNameInput: HTMLElement;
+
     /** Tries to add the current itemName to the category, checking for uniqueness first. */
     function tryAddItem() {
         if(isUniqueItem(itemName)) {
@@ -46,7 +48,9 @@
             d('updated');
             return;
         }
+
         alert(`A category named '${categoryName}' already exists.`);
+        categoryNameInput.focus();
     }
 
     /** Deletes an item by a given Item Id. */
@@ -60,7 +64,7 @@
 <section>
     <h3>
         {#if editing}
-            <input type="text" 
+            <input type="text" bind:this="{categoryNameInput}"
                 on:blur="{tryChangeName}"
                 bind:value="{categoryName}" />
         {:else}

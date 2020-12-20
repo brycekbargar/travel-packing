@@ -12,7 +12,7 @@
     let itemName = item.name;
 
     let editing = false;
-
+    let itemNameInput: HTMLElement;
 
     /**
      * Tries to change the name of the current item, checking for uniqueness first.
@@ -23,7 +23,9 @@
             editing = false;
             return;
         }
+
         alert(`An item named '${name}' already exists.`);
+        itemNameInput.focus();
     }
 </script>
 
@@ -31,7 +33,7 @@
     <input type="checkbox"
         bind:checked="{item.packed}" />
     {#if editing}
-        <input type="text" 
+        <input type="text" bind:this="{itemNameInput}"
             on:blur="{tryChangeName}"
             bind:value="{itemName}" />
     {:else}

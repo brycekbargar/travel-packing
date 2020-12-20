@@ -18,7 +18,7 @@
     let editing = false;
     let itemName: string;
 
-    let displayItems = Array<Item>();
+    let displayItems = category.displayItems;
     let remaining: number, total: number;
     $: {
         displayItems;
@@ -32,6 +32,7 @@
             category.addItem(itemName);
             displayItems = category.displayItems;
             itemName = '';
+            d('updated');
             return;
         }
 
@@ -42,6 +43,7 @@
         if(isUniqueCategory(categoryName, category.id)) {
             category.name = categoryName;
             editing = false;
+            d('updated');
             return;
         }
         alert(`A category named '${categoryName}' already exists.`);
@@ -51,6 +53,7 @@
     function deleteItem(e: CustomEvent) {
         category.removeItemById(e.detail);
         displayItems = category.displayItems;
+        d('updated');
     }
 </script>
 

@@ -4,7 +4,7 @@
     import type { Item } from '../model/Item'
     import type { UniqueGuarantor } from '../model/PossiblyUnique'
 
-    import { store as ivReader, ItemVisibility } from '../stores/itemVisibilityStore'
+    import { read as ivReader, ItemVisibility } from '../stores/itemVisibilityStore'
 </script>
 <script>
     const d = createEventDispatcher();

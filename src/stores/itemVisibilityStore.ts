@@ -1,5 +1,5 @@
 import type { Item } from 'src/model/Item';
-import { writable } from 'svelte/store'
+import { writable, Writable, Readable } from 'svelte/store'
 
 /**
  * ItemVisibility represents a way to control which items should be visible.
@@ -11,6 +11,11 @@ export enum ItemVisibility {
 }
 
 /**
- * A store of ItemVisibilities.
+ * A read/write store of ItemVisibilities.
  */
-export const store = writable(ItemVisibility.All);
+export const write: Writable<ItemVisibility> = writable(ItemVisibility.All);
+
+/**
+ * A readonly store of ItemVisibilities.
+ */
+export const read: Readable<ItemVisibility> = write;

@@ -7,7 +7,7 @@
     import { Category } from '../model/Category'
     import { Item } from '../model/Item'
 
-    import { store as ivWriter, ItemVisibility } from '../stores/itemVisibilityStore'
+    import { write as ivWriter, ItemVisibility } from '../stores/itemVisibilityStore'
 </script>
 <script>
     const username: string = getContext('currentUser');

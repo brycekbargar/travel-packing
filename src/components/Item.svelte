@@ -49,6 +49,11 @@
         })
         dialog.showModal();
     }
+
+    /** Focus on the item name input when the user chooses to edit it. */
+    function focusItemName(e: HTMLElement) {
+        e.focus();
+    }
 </script>
 
 <li hidden="{hidden}">
@@ -56,6 +61,7 @@
         bind:checked="{item.packed}" />
     {#if editing}
         <input type="text" bind:this="{itemNameInput}"
+            use:focusItemName
             on:blur="{tryChangeName}"
             bind:value="{itemName}" />
     {:else}

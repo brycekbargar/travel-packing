@@ -70,12 +70,18 @@
         displayItems = category.displayItems;
         d('updated');
     }
+
+    /** Focus on the item name input when the user chooses to edit it. */
+    function focusCategoryName(e: HTMLElement) {
+        e.focus();
+    }
 </script>
 
 <section>
     <h3>
         {#if editing}
             <input type="text" bind:this="{categoryNameInput}"
+                use:focusCategoryName
                 on:blur="{tryChangeName}"
                 bind:value="{categoryName}" />
         {:else}

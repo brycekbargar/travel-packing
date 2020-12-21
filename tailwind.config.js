@@ -5,7 +5,11 @@ module.exports = {
   },
   darkMode: 'media', // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ['Inter var', ...require('tailwindcss/defaultTheme').fontFamily.sans],
+      },
+    },
   },
   variants: {
     extend: {},

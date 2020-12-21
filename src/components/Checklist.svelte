@@ -11,15 +11,13 @@
     import { write as ivWriter, ItemVisibility } from '../stores/itemVisibilityStore'
 </script>
 <script>
-import Dialog from "./Dialog.svelte";
-
     const username: string = getContext('currentUser');
 
     const savedCategories = localStorage.getItem('travel-packing' + username);
     let categories = Array<Category>();
     if(savedCategories) {
         categories = JSON.parse(savedCategories).map((c: any) => {
-            const items = c.items.map((i: any) => new Item(i.id, i.name, i.packed))
+            const items = c.items.map((i: any) => new Item(i.id, c.id, i.name, i.packed))
             return new Category(c.id, c.name, items);
         });
     }
@@ -61,6 +59,16 @@ import Dialog from "./Dialog.svelte";
         localStorage.setItem(
             'travel-packing' + username,
              JSON.stringify(categories));
+    }
+
+    /** Switches the given item between the given categories. */
+    function changeCategory(e: CustomEvent) {
+        const [source] = categories.filter(c => c.id === e.detail.categoryId);
+        source.removeItemById(e.detail.id);
+        const [target] = categories.filter(c => c.id === e.detail.destination);
+        target.addItem(e.detail.name, e.detail.packed);
+
+        categories = categories;
     }
 </script>
 
@@ -107,11 +115,12 @@ import Dialog from "./Dialog.svelte";
     <div>
         {#each categories as thisCategory (thisCategory.id)}
             <CategoryC 
-                category="{thisCategory}"
+                bind:category="{thisCategory}"
                 isUniqueItem="{isUniqueItem}"
                 isUniqueCategory="{isUniqueCategory}"
                 on:delete="{deleteCategory}"
-                on:updated="{save}"/>
+                on:updated="{save}"
+                on:changeCategory="{changeCategory}"/>
         {/each}
     </div>
 </section>

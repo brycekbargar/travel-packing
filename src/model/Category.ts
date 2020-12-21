@@ -45,8 +45,8 @@ export class Category{
      * Adds a new Item to the category with a generated id.
      * @param itemName The name of the new item to add to the Category.
      */
-    addItem(itemName: string) {
-        this.items = [new Item(Guid.raw(), itemName), ...this.items]
+    addItem(itemName: string, packed?: boolean) {
+        this.items = [new Item(Guid.raw(), this.id, itemName, packed), ...this.items]
     }
     /**
      * Removes an existing Item from the category with the given id.

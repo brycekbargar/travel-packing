@@ -54,9 +54,19 @@
     function focusItemName(e: HTMLElement) {
         e.focus();
     }
+
+    /** Captures the currently dragged item in the drag event data. */
+    function itemDragged(ev: DragEvent) {
+        if(ev.dataTransfer) {
+            ev.dataTransfer.setData('text/json', JSON.stringify(item));
+        }
+    }
 </script>
 
-<li hidden="{hidden}">
+<li 
+    hidden="{hidden}"
+    draggable="true"
+    on:dragstart="{itemDragged}">
     <input type="checkbox"
         bind:checked="{item.packed}" />
     {#if editing}

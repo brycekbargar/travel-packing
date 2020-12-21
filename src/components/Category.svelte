@@ -75,9 +75,24 @@
     function focusCategoryName(e: HTMLElement) {
         e.focus();
     }
+
+    /** droppable represents drag/drop lifecycle events */
+    function drop(ev: DragEvent){
+        console.log('drop');
+        if(ev.dataTransfer) {
+            const item = JSON.parse(ev.dataTransfer.getData('text/json'));
+            d('changeCategory', {
+                ...item,
+                destination: category.id,
+            });
+        }
+    };
 </script>
 
-<section>
+<section
+    on:dragover|preventDefault
+    on:drop|preventDefault="{drop}"
+    >
     <h3>
         {#if editing}
             <input type="text" bind:this="{categoryNameInput}"

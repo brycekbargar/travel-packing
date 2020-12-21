@@ -2,6 +2,7 @@
     import { getContext } from 'svelte'
 
     import CategoryC from './Category.svelte'
+    import DialogC from './Dialog.svelte'
 
     import { Guid } from 'guid-typescript'
     import { Category } from '../model/Category'
@@ -10,6 +11,8 @@
     import { write as ivWriter, ItemVisibility } from '../stores/itemVisibilityStore'
 </script>
 <script>
+import Dialog from "./Dialog.svelte";
+
     const username: string = getContext('currentUser');
 
     const savedCategories = localStorage.getItem('travel-packing' + username);
@@ -32,6 +35,9 @@
         save();
     }
 
+    let message: string;
+    let dialog: HTMLDialogElement;
+    
     /** Tries to create the current categoryName, checking for uniqueness first. */
     function tryAddCategory() {
         if(isUniqueCategory(categoryName)) {
@@ -41,7 +47,8 @@
             return;
         }
 
-        alert(`An category named '${categoryName}' already exists.`);
+        message = `An category named '${categoryName}' already exists.`;
+        dialog.showModal();
     }
 
     /** Deletes a category by a given Item Id. */
@@ -108,3 +115,9 @@
         {/each}
     </div>
 </section>
+
+<DialogC 
+    bind:dialog="{dialog}"
+    title="Packing List">
+    <div>{message}</div>
+</DialogC>

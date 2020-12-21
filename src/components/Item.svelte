@@ -1,6 +1,8 @@
 <script context="module">
     import { createEventDispatcher } from 'svelte'
 
+    import DialogC from './Dialog.svelte'
+
     import type { Item } from '../model/Item'
     import type { UniqueGuarantor } from '../model/PossiblyUnique'
 
@@ -25,6 +27,10 @@
         }
     }
 
+    let message: string;
+    let dialog: HTMLDialogElement;
+    let dialogC: DialogC;
+
     /**
      * Tries to change the name of the current item, checking for uniqueness first.
      */
@@ -35,8 +41,13 @@
             return;
         }
 
-        alert(`An item named '${itemName}' already exists.`);
-        itemNameInput.focus();
+        message = `An item named '${itemName}' already exists.`;
+        let detach: Function;
+        detach = dialogC.$on('close', () => {
+            itemNameInput.focus();
+            detach();
+        })
+        dialog.showModal();
     }
 </script>
 
@@ -55,3 +66,9 @@
     {/if}
     <button type="button" on:click="{() => d('delete', item.id)}">&#x1F5D1;</button>
 </li>
+
+<DialogC bind:this="{dialogC}"
+    bind:dialog="{dialog}"
+    title="Items">
+    <div>{message}</div>
+</DialogC>

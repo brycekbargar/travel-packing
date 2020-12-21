@@ -2,6 +2,7 @@
     import { createEventDispatcher } from 'svelte'
 
     import ItemC from './Item.svelte'
+    import DialogC from './Dialog.svelte'
 
     import type { Category } from '../model/Category'
     import type { Item } from '../model/Item'
@@ -28,6 +29,10 @@
 
     let categoryNameInput: HTMLElement;
 
+    let message: string;
+    let dialog: HTMLDialogElement;
+    let dialogC: DialogC;
+
     /** Tries to add the current itemName to the category, checking for uniqueness first. */
     function tryAddItem() {
         if(isUniqueItem(itemName)) {
@@ -38,7 +43,8 @@
             return;
         }
 
-        alert(`An item named '${itemName}' already exists.`);
+        message = `An item named '${itemName}' already exists.`;
+        dialog.showModal();
     }
     /** Tries to change the name of the current category, checking for uniqueness first. */
     function tryChangeName() {
@@ -49,8 +55,13 @@
             return;
         }
 
-        alert(`A category named '${categoryName}' already exists.`);
-        categoryNameInput.focus();
+        message = `A category named '${categoryName}' already exists.`;
+        let detach: Function;
+        detach = dialogC.$on('close', () => {
+            categoryNameInput.focus();
+            detach();
+        })
+        dialog.showModal();
     }
 
     /** Deletes an item by a given Item Id. */
@@ -96,3 +107,9 @@
         {/each}
     </ul>
 </section>
+
+<DialogC bind:this="{dialogC}"
+    bind:dialog="{dialog}"
+    title="Categories">
+    <div>{message}</div>
+</DialogC>

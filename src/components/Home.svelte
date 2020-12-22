@@ -1,30 +1,52 @@
 <script context="module">
-	import { setContext } from 'svelte';
+	import { setContext, SvelteComponent } from 'svelte';
 
 	import LoginC from './Login.svelte'
 	import ChecklistC from './Checklist.svelte'
+	import NotFoundC from './NotFound.svelte'
 </script>
 <script>
 	let isLoggedIn = false;
 	let username: string;
 
 	$: setContext('currentUser', username);
+
+	let component: typeof SvelteComponent = LoginC;
+	const routes: Record<string, typeof SvelteComponent> = {
+		'#Logout': LoginC,
+		'#Packing': ChecklistC
+	}
+
+	/** Performs naive hash based routing. */
+	function doRoute(_: HashChangeEvent) {
+		if(location.hash) {
+			component = routes[location.hash] || NotFoundC;
+		}
+		else {
+			component = LoginC;
+		}
+	}
+
 </script>
+
+<svelte:window on:hashchange="{doRoute}" />
 
 <header>
 	<h1>Travel Packing Checklist</h1>
 	<button type="button" 
 		hidden="{!isLoggedIn}"
-		on:click="{() => isLoggedIn = false}">Logout</button>
+		on:click="{() => {
+			isLoggedIn = false;
+			location.replace('#Logout');
+		}}">Logout</button>
 </header>
 <main>
-	{#if isLoggedIn}
-	<ChecklistC />
-	{:else}
-	<LoginC 
+	<svelte:component this="{component}" 
 		bind:username
-		on:login="{() => isLoggedIn = true}"/>
-	{/if}
+		on:login="{() => {
+			isLoggedIn = true;
+			location.hash = '#Packing'
+		}}"/>
 </main>
 
 <style>

@@ -1,0 +1,414 @@
+
+{
+  "header": {
+    "reportVersion": 1,
+    "event": "Allocation failed - JavaScript heap out of memory",
+    "trigger": "FatalError",
+    "filename": "report.20201222.094449.26090.0.001.json",
+    "dumpEventTime": "2020-12-22T09:44:49Z",
+    "dumpEventTimeStamp": "1608651889326",
+    "processId": 26090,
+    "cwd": "/home/bryce/_src/travel-packing",
+    "commandLine": [
+      "/home/bryce/.vscode-server/bin/940b5f4bb5fa47866a54529ed759d95d09ee80be/node",
+      "/home/bryce/.vscode-server/extensions/svelte.svelte-vscode-102.8.0/node_modules/svelte-language-server/bin/server.js",
+      "--node-ipc",
+      "--clientProcessId=21781"
+    ],
+    "nodejsVersion": "v12.14.1",
+    "glibcVersionRuntime": "2.31",
+    "glibcVersionCompiler": "2.17",
+    "wordSize": 64,
+    "arch": "x64",
+    "platform": "linux",
+    "componentVersions": {
+      "node": "12.14.1",
+      "v8": "7.7.299.13-node.16",
+      "uv": "1.33.1",
+      "zlib": "1.2.11",
+      "brotli": "1.0.7",
+      "ares": "1.15.0",
+      "modules": "72",
+      "nghttp2": "1.40.0",
+      "napi": "5",
+      "llhttp": "2.0.1",
+      "http_parser": "2.8.0",
+      "openssl": "1.1.1d",
+      "cldr": "35.1",
+      "icu": "64.2",
+      "tz": "2019c",
+      "unicode": "12.1"
+    },
+    "release": {
+      "name": "node",
+      "lts": "Erbium",
+      "headersUrl": "https://nodejs.org/download/release/v12.14.1/node-v12.14.1-headers.tar.gz",
+      "sourceUrl": "https://nodejs.org/download/release/v12.14.1/node-v12.14.1.tar.gz"
+    },
+    "osName": "Linux",
+    "osRelease": "4.19.128-microsoft-standard",
+    "osVersion": "#1 SMP Tue Jun 23 12:58:10 UTC 2020",
+    "osMachine": "x86_64",
+    "cpus": [
+      {
+        "model": "Intel(R) Core(TM) i7-8550U CPU @ 1.80GHz",
+        "speed": 1992,
+        "user": 8995100,
+        "nice": 0,
+        "sys": 7624000,
+        "idle": 3117661600,
+        "irq": 0
+      },
+      {
+        "model": "Intel(R) Core(TM) i7-8550U CPU @ 1.80GHz",
+        "speed": 1992,
+        "user": 7760500,
+        "nice": 0,
+        "sys": 5978300,
+        "idle": 3121887800,
+        "irq": 0
+      },
+      {
+        "model": "Intel(R) Core(TM) i7-8550U CPU @ 1.80GHz",
+        "speed": 1992,
+        "user": 8799600,
+        "nice": 0,
+        "sys": 9387600,
+        "idle": 3116717600,
+        "irq": 0
+      },
+      {
+        "model": "Intel(R) Core(TM) i7-8550U CPU @ 1.80GHz",
+        "speed": 1992,
+        "user": 7521900,
+        "nice": 0,
+        "sys": 5037600,
+        "idle": 3123210400,
+        "irq": 0
+      },
+      {
+        "model": "Intel(R) Core(TM) i7-8550U CPU @ 1.80GHz",
+        "speed": 1992,
+        "user": 9111700,
+        "nice": 0,
+        "sys": 9397700,
+        "idle": 3116464100,
+        "irq": 0
+      },
+      {
+        "model": "Intel(R) Core(TM) i7-8550U CPU @ 1.80GHz",
+        "speed": 1992,
+        "user": 7815200,
+        "nice": 0,
+        "sys": 4516700,
+        "idle": 3123273200,
+        "irq": 0
+      },
+      {
+        "model": "Intel(R) Core(TM) i7-8550U CPU @ 1.80GHz",
+        "speed": 1992,
+        "user": 9326500,
+        "nice": 0,
+        "sys": 8904400,
+        "idle": 3116735200,
+        "irq": 0
+      },
+      {
+        "model": "Intel(R) Core(TM) i7-8550U CPU @ 1.80GHz",
+        "speed": 1992,
+        "user": 7508500,
+        "nice": 0,
+        "sys": 4576600,
+        "idle": 3134596300,
+        "irq": 0
+      }
+    ],
+    "networkInterfaces": [
+      {
+        "name": "lo",
+        "internal": true,
+        "mac": "00:00:00:00:00:00",
+        "address": "127.0.0.1",
+        "netmask": "255.0.0.0",
+        "family": "IPv4"
+      },
+      {
+        "name": "eth0",
+        "internal": false,
+        "mac": "00:15:5d:65:0b:24",
+        "address": "172.22.16.86",
+        "netmask": "255.255.240.0",
+        "family": "IPv4"
+      },
+      {
+        "name": "lo",
+        "internal": true,
+        "mac": "00:00:00:00:00:00",
+        "address": "::1",
+        "netmask": "ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff",
+        "family": "IPv6",
+        "scopeid": 0
+      },
+      {
+        "name": "eth0",
+        "internal": false,
+        "mac": "00:15:5d:65:0b:24",
+        "address": "fe80::215:5dff:fe65:b24",
+        "netmask": "ffff:ffff:ffff:ffff::",
+        "family": "IPv6",
+        "scopeid": 5
+      }
+    ],
+    "host": "DESKTOP-LFQB90V"
+  },
+  "javascriptStack": {
+    "message": "No stack.",
+    "stack": [
+      "Unavailable."
+    ]
+  },
+  "nativeStack": [
+    {
+      "pc": "0x0000000000b05ba5",
+      "symbol": "report::TriggerNodeReport(v8::Isolate*, node::Environment*, char const*, char const*, std::string const&, v8::Local<v8::String>) [/home/bryce/.vscode-server/bin/940b5f4bb5fa47866a54529ed759d95d09ee80be/node]"
+    },
+    {
+      "pc": "0x00000000009dbd93",
+      "symbol": "node::OnFatalError(char const*, char const*) [/home/bryce/.vscode-server/bin/940b5f4bb5fa47866a54529ed759d95d09ee80be/node]"
+    },
+    {
+      "pc": "0x0000000000b3b18e",
+      "symbol": "v8::Utils::ReportOOMFailure(v8::internal::Isolate*, char const*, bool) [/home/bryce/.vscode-server/bin/940b5f4bb5fa47866a54529ed759d95d09ee80be/node]"
+    },
+    {
+      "pc": "0x0000000000b3b509",
+      "symbol": "v8::internal::V8::FatalProcessOutOfMemory(v8::internal::Isolate*, char const*, bool) [/home/bryce/.vscode-server/bin/940b5f4bb5fa47866a54529ed759d95d09ee80be/node]"
+    },
+    {
+      "pc": "0x0000000000ce68a5",
+      "symbol": " [/home/bryce/.vscode-server/bin/940b5f4bb5fa47866a54529ed759d95d09ee80be/node]"
+    },
+    {
+      "pc": "0x0000000000ce6f36",
+      "symbol": "v8::internal::Heap::RecomputeLimits(v8::internal::GarbageCollector) [/home/bryce/.vscode-server/bin/940b5f4bb5fa47866a54529ed759d95d09ee80be/node]"
+    },
+    {
+      "pc": "0x0000000000cf2dca",
+      "symbol": "v8::internal::Heap::PerformGarbageCollection(v8::internal::GarbageCollector, v8::GCCallbackFlags) [/home/bryce/.vscode-server/bin/940b5f4bb5fa47866a54529ed759d95d09ee80be/node]"
+    },
+    {
+      "pc": "0x0000000000cf3cd5",
+      "symbol": "v8::internal::Heap::CollectGarbage(v8::internal::AllocationSpace, v8::internal::GarbageCollectionReason, v8::GCCallbackFlags) [/home/bryce/.vscode-server/bin/940b5f4bb5fa47866a54529ed759d95d09ee80be/node]"
+    },
+    {
+      "pc": "0x0000000000cf66e8",
+      "symbol": "v8::internal::Heap::AllocateRawWithRetryOrFail(int, v8::internal::AllocationType, v8::internal::AllocationAlignment) [/home/bryce/.vscode-server/bin/940b5f4bb5fa47866a54529ed759d95d09ee80be/node]"
+    },
+    {
+      "pc": "0x0000000000cbd017",
+      "symbol": "v8::internal::Factory::NewFillerObject(int, bool, v8::internal::AllocationType) [/home/bryce/.vscode-server/bin/940b5f4bb5fa47866a54529ed759d95d09ee80be/node]"
+    },
+    {
+      "pc": "0x0000000000ff31d9",
+      "symbol": "v8::internal::Runtime_AllocateInOldGeneration(int, unsigned long*, v8::internal::Isolate*) [/home/bryce/.vscode-server/bin/940b5f4bb5fa47866a54529ed759d95d09ee80be/node]"
+    },
+    {
+      "pc": "0x0000000001376259",
+      "symbol": " [/home/bryce/.vscode-server/bin/940b5f4bb5fa47866a54529ed759d95d09ee80be/node]"
+    }
+  ],
+  "javascriptHeap": {
+    "totalMemory": 2191208448,
+    "totalCommittedMemory": 2186272088,
+    "usedMemory": 2119840968,
+    "availableMemory": 69893256,
+    "memoryLimit": 2197815296,
+    "heapSpaces": {
+      "read_only_space": {
+        "memorySize": 262144,
+        "committedMemory": 32568,
+        "capacity": 261872,
+        "used": 32296,
+        "available": 229576
+      },
+      "new_space": {
+        "memorySize": 33554432,
+        "committedMemory": 29362272,
+        "capacity": 16759808,
+        "used": 2804696,
+        "available": 13955112
+      },
+      "old_space": {
+        "memorySize": 2035920896,
+        "committedMemory": 2035676224,
+        "capacity": 2032421120,
+        "used": 2000079208,
+        "available": 32341912
+      },
+      "code_space": {
+        "memorySize": 4620288,
+        "committedMemory": 4350976,
+        "capacity": 3427744,
+        "used": 3427744,
+        "available": 0
+      },
+      "map_space": {
+        "memorySize": 4722688,
+        "committedMemory": 4722048,
+        "capacity": 1496960,
+        "used": 1496960,
+        "available": 0
+      },
+      "large_object_space": {
+        "memorySize": 111808512,
+        "committedMemory": 111808512,
+        "capacity": 111738848,
+        "used": 111738848,
+        "available": 0
+      },
+      "code_large_object_space": {
+        "memorySize": 319488,
+        "committedMemory": 319488,
+        "capacity": 261216,
+        "used": 261216,
+        "available": 0
+      },
+      "new_large_object_space": {
+        "memorySize": 0,
+        "committedMemory": 0,
+        "capacity": 16759808,
+        "used": 0,
+        "available": 16759808
+      }
+    }
+  },
+  "resourceUsage": {
+    "userCpuSeconds": 541.469,
+    "kernelCpuSeconds": 17.4129,
+    "cpuConsumptionPercent": 24.6638,
+    "maxRss": 2337669120,
+    "pageFaults": {
+      "IORequired": 0,
+      "IONotRequired": 4005195
+    },
+    "fsActivity": {
+      "reads": 472,
+      "writes": 16
+    }
+  },
+  "uvthreadResourceUsage": {
+    "userCpuSeconds": 301.27,
+    "kernelCpuSeconds": 7.67329,
+    "cpuConsumptionPercent": 13.6338,
+    "fsActivity": {
+      "reads": 472,
+      "writes": 16
+    }
+  },
+  "libuv": [
+  ],
+  "environmentVariables": {
+    "USER": "bryce",
+    "VSCODE_WSL_EXT_LOCATION": "/mnt/c/Users/bryce/.vscode/extensions/ms-vscode-remote.remote-wsl-0.52.0",
+    "WT_PROFILE_ID": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
+    "SHLVL": "0",
+    "HOME": "/home/bryce",
+    "OLDPWD": "/mnt/c/Users/bryce/scoop/apps/vscode/1.52.0",
+    "WSL_DISTRO_NAME": "Debian",
+    "LOGNAME": "bryce",
+    "WSL_INTEROP": "/run/WSL/21736_interop",
+    "NAME": "DESKTOP-LFQB90V",
+    "_": "/home/bryce/.vscode-server/bin/940b5f4bb5fa47866a54529ed759d95d09ee80be/node",
+    "TERM": "xterm-256color",
+    "PATH": "/home/bryce/.vscode-server/bin/940b5f4bb5fa47866a54529ed759d95d09ee80be/bin:/usr/local/bin:/usr/local/sbin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/mnt/c/Users/bryce/scoop/apps/pwsh/current:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files/Intel/WiFi/bin/:/mnt/c/Program Files/Common Files/Intel/WirelessCommon/:/mnt/c/Program Files/Docker/Docker/resources/bin:/mnt/c/ProgramData/DockerDesktop/version-bin:/mnt/c/Users/bryce/scoop/shims:/mnt/c/Users/bryce/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/bryce/_src/windows-dotfiles/dotfiles/git/bin:/home/bryce/go/bin:/home/bryce/.n/bin",
+    "VSCODE_AGENT_FOLDER": "/home/bryce/.vscode-server",
+    "WT_SESSION": "96d7487a-56d4-472b-8d1d-cd49c6bfd223",
+    "LANG": "en_US.UTF-8",
+    "SHELL": "/usr/bin/zsh",
+    "PWD": "/home/bryce/_src",
+    "HOSTTYPE": "x86_64",
+    "WSLENV": "VSCODE_WSL_EXT_LOCATION/up:WT_SESSION::WT_PROFILE_ID",
+    "VSCODE_INJECT_NODE_MODULE_LOOKUP_PATH": "/home/bryce/.vscode-server/bin/940b5f4bb5fa47866a54529ed759d95d09ee80be/remote/node_modules",
+    "GIT_AUTHOR_NAME": "bryce",
+    "GIT_AUTHOR_EMAIL": "brycekbargar@gmail.com",
+    "GIT_COMMITTER_NAME": "bryce",
+    "GIT_COMMITTER_EMAIL": "brycekbargar@gmail.com",
+    "MNML_INSERT_CHAR": "⬛⬜⬛⬛⬛",
+    "MNML_NORMAL_CHAR": "⬛⬛⬛⬛⬛",
+    "MNML_USER_CHAR": "⚧",
+    "CLICOLOR": "1",
+    "LSCOLORS": "Gxfxcxdxbxegedabagacad",
+    "LS_COLORS": "di=1;36:ln=1;35:so=1;32:pi=1;33:ex=1;31;40:bd=0;40:cd=0;40:su=31:sg=31:tw=36:ow=36",
+    "LESS": "--ignore-case --raw-control-chars -FRXK",
+    "PAGER": "less",
+    "EDITOR": "vim",
+    "VISUAL": "vim",
+    "KEYTIMEOUT": "1",
+    "N_PREFIX": "/home/bryce/.n",
+    "N_PRESERVE_NPM": "1",
+    "AMD_ENTRYPOINT": "vs/server/remoteExtensionHostProcess",
+    "PIPE_LOGGING": "true",
+    "VERBOSE_LOGGING": "true",
+    "VSCODE_EXTHOST_WILL_SEND_SOCKET": "true",
+    "VSCODE_HANDLES_UNCAUGHT_ERRORS": "true",
+    "VSCODE_LOG_STACK": "false",
+    "VSCODE_NLS_CONFIG": "{\"locale\":\"en\",\"availableLanguages\":{}}",
+    "BROWSER": "/home/bryce/.vscode-server/bin/940b5f4bb5fa47866a54529ed759d95d09ee80be/bin/helpers/browser.sh",
+    "VSCODE_IPC_HOOK_CLI": "/tmp/vscode-ipc-0ee8746b-ab93-40b7-9f46-49359dd99822.sock",
+    "APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL": "true",
+    "ELECTRON_RUN_AS_NODE": "1",
+    "ELECTRON_NO_ASAR": "1"
+  },
+  "userLimits": {
+    "core_file_size_blocks": {
+      "soft": 0,
+      "hard": "unlimited"
+    },
+    "data_seg_size_kbytes": {
+      "soft": "unlimited",
+      "hard": "unlimited"
+    },
+    "file_size_blocks": {
+      "soft": "unlimited",
+      "hard": "unlimited"
+    },
+    "max_locked_memory_bytes": {
+      "soft": 65536,
+      "hard": 65536
+    },
+    "max_memory_size_kbytes": {
+      "soft": "unlimited",
+      "hard": "unlimited"
+    },
+    "open_files": {
+      "soft": 4096,
+      "hard": 4096
+    },
+    "stack_size_bytes": {
+      "soft": 8388608,
+      "hard": "unlimited"
+    },
+    "cpu_time_seconds": {
+      "soft": "unlimited",
+      "hard": "unlimited"
+    },
+    "max_user_processes": {
+      "soft": 50618,
+      "hard": 50618
+    },
+    "virtual_memory_kbytes": {
+      "soft": "unlimited",
+      "hard": "unlimited"
+    }
+  },
+  "sharedObjects": [
+    "linux-vdso.so.1",
+    "/lib/x86_64-linux-gnu/libdl.so.2",
+    "/usr/lib/x86_64-linux-gnu/libstdc++.so.6",
+    "/lib/x86_64-linux-gnu/libm.so.6",
+    "/lib/x86_64-linux-gnu/libgcc_s.so.1",
+    "/lib/x86_64-linux-gnu/libpthread.so.0",
+    "/lib/x86_64-linux-gnu/libc.so.6",
+    "/lib64/ld-linux-x86-64.so.2"
+  ]
+}

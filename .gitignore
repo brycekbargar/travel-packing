@@ -1,6 +1,7 @@
-.build
-build
-web_modules
+.DS_Store
 node_modules
-coverage/
+/.svelte
+/build
+/functions
+/coverage
 debug.log

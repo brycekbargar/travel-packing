@@ -1,5 +1,4 @@
 <script context="module">
-    import polyfill from 'dialog-polyfill';
     import { onMount, createEventDispatcher } from 'svelte';
 </script>
 <script>
@@ -8,7 +7,10 @@
     export let title = '';
 
     export let dialog: HTMLDialogElement;
-    onMount(() => polyfill.registerDialog(dialog));
+    onMount(async () => {
+        const {default: polyfill} = await require('dialog-polyfill');
+        polyfill.registerDialog(dialog);
+    });
 
     function close() {
         dialog.close();

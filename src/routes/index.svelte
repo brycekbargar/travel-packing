@@ -1,48 +1,77 @@
+<script context="module">
+    import { setContext } from 'svelte'
+</script>
 <script>
-	import Counter from '$components/Counter.svelte';
+
+    let username: string;
+    $: setContext('currentUser', username);
+
+    let password: string;
+
+    function signup() { alert('Signup'); }
 </script>
 
-<main>
-	<h1>Hello world!</h1>
+<div id="login-container">
+    <form on:submit|preventDefault="{() => window.location.href = "/checklist"}">
+        <fieldset>
+            <legend><h3>Login</h3></legend>
 
-	<Counter/>
-	<p>Visit the <a href="https://svelte.dev">svelte.dev</a> to learn how to build Svelte apps.</p>
-</main>
+            <label for="username">Username</label>
+            <input type="email" required
+                id="username" name="username"
+                bind:value="{username}" />
+            <label for="password">Password</label>
+            <input type="password" required
+                id="password" name="password"
+                bind:value="{password}" />
+        </fieldset>
+        <span>
+            <button type="submit">Login</button>
+            <button type="button" on:click="{signup}">Signup</button>
+        </span>
+    </form>
+</div>
 
 <style>
-	:root {
-		font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-	}
+    #login-container { @apply
+        flex
+        justify-center
+    }
 
-	main {
-		text-align: center;
-		padding: 1em;
-		margin: 0 auto;
-	}
+    form { @apply
+        flex
+        flex-col
+        content-center
+        shadow-md
+        m-4
+        p-4
+    }
 
-	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4rem;
-		font-weight: 100;
-		line-height: 1.1;
-		margin: 4rem auto;
-		max-width: 14rem;
-	}
+    fieldset { @apply
+        flex
+        flex-col
+        p-3
+    }
 
-	p {
-		max-width: 14rem;
-		margin: 2rem auto;
-		line-height: 1.35;
-	}
+    h3 { @apply
+        text-lg
+    }
 
-	@media (min-width: 480px) {
-		h1 {
-			max-width: none;
-		}
+    input { @apply
+        max-w-sm
+    }
 
-		p {
-			max-width: none;
-		}
-	}
+    form span { @apply
+        flex
+        justify-around
+    }
+
+    button { @apply
+        w-20
+    }
+
+    button[type="submit"] { @apply
+		dark:bg-green-800
+		bg-green-400
+    }
 </style>

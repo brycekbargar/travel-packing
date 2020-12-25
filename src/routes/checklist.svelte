@@ -1,8 +1,8 @@
 <script context="module">
-    import { getContext } from 'svelte'
+    import { getContext, onMount } from 'svelte'
 
-    import CategoryC from './Category.svelte'
-    import DialogC from './Dialog.svelte'
+    import CategoryC from '$components/Category.svelte'
+    import DialogC from '$components/Dialog.svelte'
 
     import { Guid } from 'guid-typescript'
     import { Category } from '../model/Category'
@@ -11,16 +11,19 @@
     import { write as ivWriter, ItemVisibility } from '../stores/itemVisibilityStore'
 </script>
 <script>
-    const username: string = getContext('currentUser');
+    let username: string = getContext('currentUser');
 
-    const savedCategories = localStorage.getItem('travel-packing' + username);
     let categories = Array<Category>();
-    if(savedCategories) {
-        categories = JSON.parse(savedCategories).map((c: any) => {
-            const items = c.items.map((i: any) => new Item(i.id, c.id, i.name, i.packed))
-            return new Category(c.id, c.name, items);
-        });
-    }
+    onMount(() =>{
+        username = getContext('currentUser');
+        const savedCategories = localStorage.getItem('travel-packing' + username);
+        if(savedCategories) {
+            categories = JSON.parse(savedCategories).map((c: any) => {
+                const items = c.items.map((i: any) => new Item(i.id, c.id, i.name, i.packed))
+                return new Category(c.id, c.name, items);
+            });
+        }
+    });
 
     let categoryName: string;
 
@@ -56,6 +59,10 @@
 
     /** Saves the current state of the categories. */
     function save() {
+        if(!process.browser) {
+            return;
+        }
+
         localStorage.setItem(
             'travel-packing' + username,
              JSON.stringify(categories));
